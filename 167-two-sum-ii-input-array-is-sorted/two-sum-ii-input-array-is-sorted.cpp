@@ -8,10 +8,8 @@ public:
         while(start < end){
             int sum = numbers[start] + numbers[end];
             if(sum == target){
-                result.push_back(start + 1);
-                result.push_back(end + 1);
-                break;
-                return result;
+              
+                return {start + 1, end + 1};
             }else if(sum < target){
                 start++;
             }else{
@@ -19,7 +17,7 @@ public:
             }
 
         }
-        return result;
+        return {} ;
         
     }
 };
