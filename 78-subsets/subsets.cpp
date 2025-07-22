@@ -1,35 +1,28 @@
 #include <vector>
+using namespace std;
+
 class Solution {
 public:
-
-    void subArr(vector<int>& nums , vector<vector<int>>& result , vector<int>temp ){
-        int n = nums.size();
-        if(n == 0){
-            result.push_back(temp);
+    void generateSubsets(int index, vector<int>& nums, vector<int>& current, vector<vector<int>>& result) {
+        // Base case: if we've considered all elements
+        if (index == nums.size()) {
+            result.push_back(current);  // Save the current subset
             return;
         }
-        int i = nums[0];
-        vector<int> addAll = temp;
-        addAll.push_back(i);
 
-        vector<int> sub(nums.begin()+ 1 , nums.end());
-        subArr(sub,result, addAll);
-        subArr(sub,result, temp);
+        // 1️⃣ Include nums[index] in the current subset
+        current.push_back(nums[index]);
+        generateSubsets(index + 1, nums, current, result);
 
-
-
+        // 2️⃣ Exclude nums[index] from the current subset (backtrack)
+        current.pop_back();
+        generateSubsets(index + 1, nums, current, result);
     }
 
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result;
-        vector<int> temp;
-
-        subArr(nums,result,temp);
+        vector<vector<int>> result;  // To store all subsets
+        vector<int> current;         // Current subset being formed
+        generateSubsets(0, nums, current, result);
         return result;
-
-        
-
-
-        
     }
 };
