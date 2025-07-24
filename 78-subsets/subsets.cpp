@@ -13,9 +13,9 @@ public:
         // 1️⃣ Include nums[index] in the current subset
         current.push_back(nums[index]);
         generateSubsets(index + 1, nums, current, result);
+        current.pop_back();  // Backtrack
 
-        // 2️⃣ Exclude nums[index] from the current subset (backtrack)
-        current.pop_back();
+        // 2️⃣ Exclude nums[index] from the current subset
         generateSubsets(index + 1, nums, current, result);
     }
 
