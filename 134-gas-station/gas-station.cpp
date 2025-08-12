@@ -2,20 +2,11 @@ class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
         int totGas = 0 , totCost = 0;
-
-        for(int val : gas){
-            totGas += val;
-        }
-
-        for(int val : cost){
-            totCost += val;
-        }
-
-        if(totGas < totCost) return -1;
-
         //uniques solution always exist
         int start = 0; int currGas = 0;
         for(int i = 0; i < gas.size(); i++){
+            totGas += gas[i];
+            totCost += cost[i];
             currGas += (gas[i] - cost[i]);
             if(currGas < 0){
                 start = i + 1;
@@ -23,7 +14,7 @@ public:
             }
         }
 
-        return start;
+        return totGas < totCost ? -1 : start;
 
 
         
