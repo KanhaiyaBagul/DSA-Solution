@@ -14,6 +14,7 @@ public:
 
         
         if(!head || !head -> next) return nullptr;
+
         ListNode * temp = head;
         ListNode * slow =  temp;
         ListNode * fast = temp;
@@ -26,6 +27,7 @@ public:
         }
 
         prev -> next = slow -> next;
+        delete slow;
         return head;
         
     }
