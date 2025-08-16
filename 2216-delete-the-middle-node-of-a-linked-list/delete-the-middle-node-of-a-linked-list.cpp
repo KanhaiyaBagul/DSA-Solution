@@ -12,19 +12,8 @@ class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
 
-        ListNode * point = head;
-        int count = 0;
-        while(point != nullptr){
-            point = point -> next;
-            count++;
-        }
-
-        if(count < 2){
-            return nullptr;
-        }
-
-
-
+        
+        if(!head || !head -> next) return nullptr;
         ListNode * temp = head;
         ListNode * slow =  temp;
         ListNode * fast = temp;
