@@ -14,10 +14,9 @@ public:
 
         
         if(!head || !head -> next) return nullptr;
-
-        ListNode * temp = head;
-        ListNode * slow =  temp;
-        ListNode * fast = temp;
+        
+        ListNode * slow =  head;
+        ListNode * fast = head;
         ListNode * prev = nullptr;
 
         while(fast != nullptr && fast -> next != nullptr){
