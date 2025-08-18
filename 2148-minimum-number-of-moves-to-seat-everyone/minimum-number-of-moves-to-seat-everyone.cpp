@@ -1,6 +1,7 @@
 class Solution {
 public:
     int minMovesToSeat(vector<int>& seats, vector<int>& students) {
+        //first sort them 
         sort(seats.begin(),seats.end());
         sort(students.begin(),students.end());
 
