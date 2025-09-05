@@ -12,15 +12,17 @@
 class Solution {
 public:
     void path(TreeNode* root , string current , vector<string>& result){
+        //if we go to the nullptr
         if(root == nullptr){
             return;
         }
-        
+        //if we find the leaf node
         if(root -> left == nullptr && root -> right == nullptr){
             result.push_back(current);
             return;
         }
 
+        //if any left value present so add the left value and move forward
         if(root -> left){
             path(root -> left, current + "->" + to_string(root ->left -> val), result);
         }
