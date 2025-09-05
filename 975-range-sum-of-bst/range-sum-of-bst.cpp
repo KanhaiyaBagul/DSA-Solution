@@ -16,14 +16,15 @@ public:
             return;
         }
 
+        //if our currnet node is in range we add into the result and then call for left and right
         if(root -> val >= low && root -> val <= high){
             result += root -> val;
             Range(root -> left , low , high, result);
             Range(root -> right , low , high, result);
         }
-        else if(root -> val < low){
+        else if(root -> val < low){//if the root is less than low
             Range(root -> right , low , high, result);
-        }else{
+        }else{//root greater than high
             Range(root -> left , low , high, result);
         }
     }
