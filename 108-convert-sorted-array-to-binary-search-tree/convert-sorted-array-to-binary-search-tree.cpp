@@ -16,12 +16,17 @@ public:
         if(start > end){
             return nullptr;
         }
+
+        //find the mid
         int mid = start + (end - start) / 2;
+        //creat mid as new node
         TreeNode* curr = new TreeNode(nums[mid]);
 
+        // go left and right and assign the mid value
         curr -> left = sortedBST(nums, start , mid - 1);
         curr -> right = sortedBST(nums, mid  + 1 , end);
 
+        //return curr value for the parent
         return curr;
     }
     TreeNode* sortedArrayToBST(vector<int>& nums) {
