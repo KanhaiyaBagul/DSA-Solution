@@ -1,25 +1,30 @@
 class Solution {
 public:
-    string sortVowels(string s) {
-        //fint the vowels string
-        string str = "";
+    bool isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+               ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U';
+    }
 
-        for(char ch : s){
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E'  || ch == 'I' || ch == 'O'|| ch == 'U'){
-                str += string(1,ch);
+    string sortVowels(string s) {
+        string vowel = "";
+        //find the vowel string
+        for (char ch : s) {
+            if (isVowel(ch)) {
+                vowel += ch;
             }
         }
 
-        sort(str.begin(), str.end());
-        int j = 0;
+        //sort the vowel string
+        sort(vowel.begin(), vowel.end());
 
-        for(int i = 0; i < s.size(); i++){
+        int j = 0;
+        //if we find the vowel in the s then replaced with the sorted
+        for (int i = 0; i < s.size(); i++) {
             char ch = s[i];
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E'  || ch == 'I' || ch == 'O'|| ch == 'U'){
-                s[i] = str[j++];
+            if (isVowel(ch)) {
+                s[i] = vowel[j++];
             }
         }
         return s;
-        
     }
 };
