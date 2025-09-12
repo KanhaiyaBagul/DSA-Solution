@@ -16,6 +16,7 @@ public:
                 pq.push(y-x);
             }
         }
+        //here we check if the priority queue is empty or not
         return pq.size() == 0 ? 0 : pq.top();
         
     }
