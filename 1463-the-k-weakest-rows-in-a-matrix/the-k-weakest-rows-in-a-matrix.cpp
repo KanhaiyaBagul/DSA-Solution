@@ -24,16 +24,18 @@ public:
         vector<int> result;
         vector<Row> rows;
 
+        //this calculatte the count of 1 and it's index
         for(int i = 0; i < mat.size(); i++){
             int count = 0;
             for(int j = 0; j < mat[0].size() && mat[i][j] == 1; j++){
                 count ++;
             }
-            rows.push_back(Row(count, i));
+            rows.push_back(Row(count, i));//push to the rows vector
         }
 
-        priority_queue<Row> pq(rows.begin(),rows.end());
+        priority_queue<Row> pq(rows.begin(),rows.end()); //make a min heap of it
 
+        //store the top weakest row idx
         for(int i = 0; i < k ; i++){
             int idx  = pq.top().idx;
             result.push_back(idx);
