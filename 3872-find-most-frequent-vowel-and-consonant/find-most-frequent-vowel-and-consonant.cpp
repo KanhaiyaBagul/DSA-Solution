@@ -5,39 +5,30 @@ public:
         return (ch == 'a' || ch == 'e' || ch == 'i' || ch  == 'o' || ch == 'u');
     }
     int maxFreqSum(string s) {
-        unordered_map<char, int> vowels;
-        unordered_map<char , int > consonant;
 
-        //seperate vowels and the consonent in different hash map
+        vector<int> alpha(26,0);
+        //count the frequency of the alphabets
         for(char ch : s){
+            alpha[ch - 'a']++;
+        }
+
+        int maxVowels = 0; 
+        int maxConconent = 0;
+
+        //fint the max freqency
+        for(int i = 0; i < 26; i++){
+            char ch = 'a' + i;
             if(isVowel(ch)){
-                vowels[ch]++;
+                maxVowels = max(maxVowels, alpha[i]);
             }else{
-                consonant[ch]++;
+                maxConconent = max(maxConconent , alpha[i]);
             }
         }
 
-        //here we initialize with zero for , if we don't have any pair it return 0
-        int maxVowel = 0;
-        int maxConsonent = 0;
+        //return the sum
+        return maxVowels + maxConconent;
 
-        //fint the max freq
-        for(auto &pair : vowels){
-            if(maxVowel < pair.second){
-                maxVowel = pair.second;
-            }
-        }
-
-        for(auto &pair : consonant){
-            if(maxConsonent < pair.second){
-                maxConsonent = pair.second;
-            }
-        }
-
-        return maxVowel + maxConsonent;
-        
-
-        
+    
         
     }
 };
