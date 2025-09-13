@@ -8,6 +8,7 @@ public:
         unordered_map<char, int> vowels;
         unordered_map<char , int > consonant;
 
+        //seperate vowels and the consonent in different hash map
         for(char ch : s){
             if(isVowel(ch)){
                 vowels[ch]++;
@@ -16,9 +17,11 @@ public:
             }
         }
 
+        //here we initialize with zero for , if we don't have any pair it return 0
         int maxVowel = 0;
         int maxConsonent = 0;
 
+        //fint the max freq
         for(auto &pair : vowels){
             if(maxVowel < pair.second){
                 maxVowel = pair.second;
