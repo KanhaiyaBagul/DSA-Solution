@@ -5,6 +5,7 @@ public:
         unordered_set<int> s1(nums1.begin() , nums1.end());
         unordered_set<int> res;
 
+        //find if it is present if present then add
         for(int num : nums2){
             if(s1.count(num)){
                 res.insert(num);
