@@ -6,8 +6,7 @@ public:
             return true;
         }
         visited[src] = true;
-        vector<int> neighbour = graph[src];
-        for(int v : neighbour){
+        for(int v : graph[src]){
             if(!visited[v]){
                 if(dfs(v, dest, graph, visited)){
                     return true;
