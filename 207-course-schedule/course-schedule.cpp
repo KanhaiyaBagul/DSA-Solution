@@ -10,16 +10,13 @@
             vis[src] = true;
             recPath[src] = true;
 
-            for(int i = 0; i < graph.size(); i++){
-                int u = graph[i][1];
-                int v = graph[i][0];
-
-                if(src == u){
-                    if(!vis[v]){
-                        if(helper(v,vis,recPath, graph)){
-                            return true;
-                        }
-                    }else if(recPath[v]){
+            for(int v : graph[src]){
+                if(!vis[v]){
+                    if(helper(v, vis, recPath, graph)){
+                        return true;
+                    }
+                }else{
+                    if(recPath[v]){
                         return true;
                     }
                 }
@@ -27,11 +24,20 @@
             recPath[src] = false;
             return false;
         }
-        bool canFinish(int numCourses, vector<vector<int>>& graph) {
+        bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
             int v = numCourses;
 
             vector<bool> vis(v,false);
             vector<bool> resPath(v,false);
+
+
+            vector<vector<int>> graph(numCourses);
+            for(auto &p : prerequisites){
+                int u = p[1];
+                int v = p[0];
+                graph[u].push_back(v);
+
+            }
 
             for(int i = 0; i < v; i++){
                 if(!vis[i]){
