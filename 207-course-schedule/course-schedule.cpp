@@ -28,12 +28,12 @@
             return false;
         }
         bool canFinish(int numCourses, vector<vector<int>>& graph) {
-            int v = graph.size();
+            int v = numCourses;
 
-            vector<bool> vis(numCourses,false);
-            vector<bool> resPath(numCourses,false);
+            vector<bool> vis(v,false);
+            vector<bool> resPath(v,false);
 
-            for(int i = 0; i < numCourses; i++){
+            for(int i = 0; i < v; i++){
                 if(!vis[i]){
                     if(helper(i, vis, resPath , graph)){
                         return false;
