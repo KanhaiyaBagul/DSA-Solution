@@ -10,7 +10,7 @@ public:
             }
         }
 
-        //if whole array is rotated then 
+        //if whole array is rotated but not rotated means we apply 0 rotations
         if(nums[n - 1] > nums[0]){
             count++;
         }
