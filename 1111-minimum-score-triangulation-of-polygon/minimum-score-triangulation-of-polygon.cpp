@@ -1,19 +1,22 @@
 class Solution {
 public:
     int solve(vector<int>& v, int i, int j,vector<vector<int>>& dp){
+        //base case
         if(i + 1 == j){
             return 0;
         }
 
+        //for dp
         if(dp[i][j] != -1){
             return dp[i][j];
         }
 
         int ans = INT_MAX;
+        //for each value of the k
         for(int k = i + 1; k < j; k++){
             ans = min(ans, v[i]*v[j]*v[k] + solve(v,i,k,dp) + solve(v,k,j,dp));
         }
-        dp[i][j] = ans;
+        dp[i][j] = ans;//strore value in the dp
         return dp[i][j];
     }
 
