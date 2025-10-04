@@ -10,6 +10,7 @@ public:
             dist[i][i] = 0;
         }
 
+        //then build the matrix for the initial condtion of each dist as given in the question 
         for (auto it : edges) {
             int u = it[0];
             int v = it[1];
@@ -19,6 +20,8 @@ public:
             dist[v][u] = wt;
         }
 
+        //then we apply our alog of Floyd algo
+        //then gives the min dist from every node 
         for (int via = 0; via < n; via++) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -36,11 +39,13 @@ public:
         for (int i = 0; i < n; i++) {
             int currCount = 0;
             for (int j = 0; j < n; j++) {
+                //here we have to count the how many node are reachable from the current with in the given distThreashold 
                 if (dist[i][j] != INT_MAX && dist[i][j] <= distanceThreshold && i != j) {
                     currCount++;
                 }
             }
 
+            //for every node get then min nodes with the if they are equal return the max idx
             if(minCount > currCount || (currCount == minCount && i > maxIdx)){
                 minCount = currCount;
                 maxIdx = i;
