@@ -1,23 +1,25 @@
 class Solution {
 public:
-    int count = 0;
-    void helper(int i, vector<int>&A,int target, int sum){
-        if(sum != target && i == A.size()){
-            return;
+    
+    unordered_map<string,int> dp;
+    int helper(int i, vector<int>&A,int target, int sum){
+        if(i == A.size()){
+            return sum == target ? 1 : 0;
         }
-        if(i == A.size() && sum == target){
-            count++;
-            return;
-        }
+
+        string key = to_string(i) + "," + to_string(sum);
+        if(dp.find(key) != dp.end()) return dp[key];
         
-        helper(i+1,A,target,sum + A[i]);
         
-        helper(i+1,A,target,sum - A[i]);
+        int add = helper(i+1,A,target,sum + A[i]);
+        
+        int sub = helper(i+1,A,target,sum - A[i]);
+
+        return dp[key] = add + sub;
         
     }
     int findTargetSumWays(vector<int>& nums, int target) {
-        helper(0,nums,target, 0);
-        return count;
-        
+        return helper(0,nums,target, 0);
+  
     }
 };
