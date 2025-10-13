@@ -1,41 +1,46 @@
 class Solution {
 public:
 
-    bool targetValue(int index , vector<int> &nums, int targetV , vector<vector<int>> &dp){
-        
-
-       
-        if(targetV == 0) return true;
-        if(index == nums.size()) return false;
-        if(dp[index][targetV] != -1) return dp[index][targetV];
-        
-        bool take = false;
-        if(nums[index] <= targetV){
-            take = targetValue(index + 1, nums, targetV - nums[index],dp);
+    bool recursion(int i, vector<int>& nums, int target , vector<vector<int>>& dp){
+        if(target == 0){//if target becomes 0
+            return true;
         }
-        
-        bool notTake = targetValue(index + 1, nums, targetV,dp);//Calculate if we not include a number 
-    
-        return dp[index][targetV] = take || notTake; // return true if any of set find the target value (half of the total sum)
 
-    }
-    bool canPartition(vector<int>& nums) {
-        int n = nums.size();
-        
-
-
-        int totalSum = 0;
-        for(int i : nums){ // We have to return if any subset is equal to the half of the total sum like sub1(sum) == sub(sum) == equal 
-            totalSum += i; //So we calculate the total sum
-        } 
-
-        if(totalSum % 2 != 0){//If sum is odd we can't find the totalsum / 2 
+        if(i == nums.size()){// if reach to the last index
             return false;
         }
-       int  targetV = totalSum / 2;//Here we have to find the totalSum / 2 from all the sub sets
-       vector<vector<int>> dp(n,vector<int>(targetV + 1,-1));
 
-        return targetValue(0 , nums , targetV,dp);//Here we pass the half value of total sum 
+        if(dp[i][target] != -1){//if we already calculated
+            return dp[i][target];
+        }
+
+        bool take = false;
+        if(nums[i] <= target){//this is for if the nums is less that the target then we can't find the partion
+            take = recursion(i  + 1, nums, target - nums[i],dp);
+        }
+
+        bool notTake = recursion(i + 1, nums, target, dp);//not included
+
+        return dp[i][target] = take || notTake;//the dp
+    } 
+    bool canPartition(vector<int>& nums) {
+        int n = nums.size();
+        int sum = 0;
+
+        for(int i : nums){
+            sum += i;
+        }
+
+        if(sum % 2 != 0){
+            return false;
+        }
+        int target = sum / 2;
+
+        vector<vector<int>> dp(n + 1,vector<int> (target+ 1,-1));
+
+        return recursion(0,nums,target,dp);
+
+
         
     }
 };
