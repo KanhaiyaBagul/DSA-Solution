@@ -6,11 +6,11 @@ public:
             return;
         }
 
-        if(left < n){
+        if(left < n){//we can get atmost n (
             recursion(n,left+1,right, str + '(',result);
         }
 
-        if(right < left){
+        if(right < left){//atleast one ( hona chaiiye
             recursion(n,left,right+1, str + ')',result);
         }
 
