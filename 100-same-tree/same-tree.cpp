@@ -19,12 +19,13 @@ public:
 
         str +=(to_string(root -> val));
 
-        DFS(root -> right,str);
         DFS(root -> left ,str);
+        DFS(root -> right,str);
+        
     }
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        string str1 = "";
-        string str2 = "";
+        string str1 = "";//store the p path
+        string str2 = "";//store the q path
 
         DFS(p,str1);
         DFS(q,str2);
