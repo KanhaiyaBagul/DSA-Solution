@@ -9,21 +9,20 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        //Both pointer start form head
-        ListNode *slow = head;
-        ListNode *fast = head;
 
-        //this is loop if the ll is circular or nor is it is then it stop
-        while(fast != nullptr && fast-> next != nullptr){
+        ListNode* slow = head;
+        ListNode* fast = head;
 
-            //we update our slow and the fast pointer
+        while(fast != nullptr && fast -> next != nullptr){
+
             slow = slow -> next;
-            fast = fast->next->next;
-            
-            //it they meat a same positon that mean it is circular
+
+            fast = fast -> next -> next;
+
             if(slow == fast){
                 return true;
             }
+
         }
         return false;
         
