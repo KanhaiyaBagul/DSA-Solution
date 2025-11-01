@@ -12,9 +12,10 @@ class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
         int n = nums.size();
-        unordered_map<int, int> elements;
+        //first use the map to store the element
+        unordered_set<int> s;
         for(int num : nums){
-            elements[num] = 1;
+            s.insert(num);
         }
 
         ListNode dummy;
@@ -22,7 +23,7 @@ public:
 
         while(head != nullptr){
 
-            if(!elements.count(head -> val)){
+            if(s.find(head -> val) == s.end()){
                 ListNode* l = new ListNode(head -> val);
                 temp -> next = l;
                 temp = temp -> next;
