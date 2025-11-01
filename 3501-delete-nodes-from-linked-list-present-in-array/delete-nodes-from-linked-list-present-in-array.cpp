@@ -13,10 +13,8 @@ public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
         int n = nums.size();
         //first use the map to store the element
-        unordered_set<int> s;
-        for(int num : nums){
-            s.insert(num);
-        }
+        unordered_set<int> s(nums.begin(),nums.end());
+        
 
         ListNode dummy;
         ListNode* temp = &dummy;
