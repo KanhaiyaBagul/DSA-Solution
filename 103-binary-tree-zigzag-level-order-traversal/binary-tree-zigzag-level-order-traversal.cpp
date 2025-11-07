@@ -13,18 +13,18 @@
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if(root == nullptr) return{};
-        vector<vector<int>> result;
-        queue<TreeNode*> q;
+        if(root == nullptr) return{};//if root is null
+        vector<vector<int>> result;//store the result
+        queue<TreeNode*> q;//queue for level order traversal
 
-        q.push(root);
-        bool toggle = false;
+        q.push(root);//initially push the root
+        bool toggle = false;//use toggle for reverse the vector
 
         while (!q.empty()) {
 
             vector<int> temp;
             int n = q.size();
-
+            //it add the curr added element in the vector and child to the queue
             for (int i = 0; i < n; i++) {
                 TreeNode* curr = q.front();
                 q.pop();
@@ -38,11 +38,12 @@ public:
                     q.push(curr->right);
                 }
             }
+            //it is for the reverse mode
             if(toggle){
                 reverse(temp.begin(),temp.end());
             }
-            result.push_back(temp);
-            toggle = !toggle;
+            result.push_back(temp);//add to the result
+            toggle = !toggle;//switch the value of the toggle
 
         }
         return result;
