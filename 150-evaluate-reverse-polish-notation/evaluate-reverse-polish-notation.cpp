@@ -2,42 +2,40 @@ class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
         
-        stack<string> s;
+        stack<int> s;
 
         for(string ch : tokens){
-            if(ch != "+" && ch != "-" && ch != "*" && ch != "/"){
-                s.push(ch);
-            }else{
-                int a = stoi(s.top());
+            //if we find any operator then perform the operation and push it to the stack
+            if(ch == "+" || ch == "-" || ch == "*" || ch == "/"){
+                int a = (s.top());
                 s.pop();
-                int  b = stoi(s.top());
+                int  b = (s.top());
                 s.pop();
 
                 int result = 0;
                 if(ch == "+"){
                     result = a + b;
-                    s.push(to_string(result));
+                    s.push(result);
                 }if(ch == "-"){
                     result = b - a;
-                    s.push(to_string(result));
+                    s.push((result));
                     
                 }if(ch == "*"){
                     result = a * b;
-                    s.push(to_string(result));
+                    s.push((result));
                 }if(ch == "/"){
                     if(a != 0){
                         result = b / a;
-                    s.push(to_string(result));
+                    s.push((result));
                     }
                     
                 }
-
-
-
+            }else{//if we don't find the operator then push the string as integer
+                s.push(stoi(ch));
             }
 
         }
-        return stoi(s.top());
+        return (s.top());
         
     }
 };
