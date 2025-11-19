@@ -5,11 +5,11 @@ public:
         int j = nums.size() - 1;
 
         sort(nums.begin(),nums.end());
-
+        //use  binary search
         while(i <= j){
-            int mid = i +( (j - i) / 2);
+            int mid = i +( (j - i) / 2);//calculate the mid
             if(nums[mid] == original){
-                original *= 2;
+                original *= 2;//if we find the original then multiply with 2 and reinitiallize the pointer
                 i = 0;
                 j = nums.size() - 1;
             }
