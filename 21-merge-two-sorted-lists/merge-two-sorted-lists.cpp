@@ -16,14 +16,14 @@ public:
         ListNode* current = &dummy; // this pass the address of the dummy 
 
         while(list1 != nullptr && list2 != nullptr){
-            if(list1 -> val <= list2 -> val){
+            if(list1 -> val <= list2 -> val){//get the smallest element at the first
                 current -> next = list1;
                 list1 = list1 -> next;
             }else{
                 current -> next = list2;
                 list2 = list2 -> next;
             }
-            current = current -> next;
+            current = current -> next;//move current to forward
 
         }
 
