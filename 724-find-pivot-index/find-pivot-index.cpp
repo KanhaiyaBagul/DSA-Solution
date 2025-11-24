@@ -1,21 +1,23 @@
 class Solution {
 public:
+    //this is the type of the prefix and suffix sum
     int pivotIndex(vector<int>& nums) {
         int n = nums.size();
-        int sum = 0;
-        int allSum = 0;
-        for(int  i = 0; i < n; i++){
-            allSum += nums[i];
+        vector<int> prefix(n);
+        vector<int> suffix(n);
+
+        prefix[0] = 0;
+        suffix[n-1] = 0;
+
+        for(int i = 1; i < n ; i++){
+            prefix[i] = prefix[i-1] + nums[i-1];
+            suffix[n-i-1] = suffix[n-i] + nums[n-i];
         }
 
-        int left = 0;
-        for(int i = 0; i < n;i++){
-            int right = allSum - left - nums[i];
-            if(right == left){
+        for(int i = 0;i < n; i++){
+            if(prefix[i] == suffix[i]){
                 return i;
             }
-
-            left += nums[i];
         }
         return -1;
         
