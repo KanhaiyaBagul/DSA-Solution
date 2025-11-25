@@ -11,41 +11,43 @@
  */
 class Solution {
 public:
+    bool helper(TreeNode* root, TreeNode* subRoot){
 
-    bool isValid(TreeNode* root1 , TreeNode* root2){
-         //if both point to null then return true
-        if(root1 == nullptr && root2 == nullptr){
-            return true;
-        }else if(root1 == nullptr || root2 == nullptr){
-            return false;
-        }
-
-        if(root1 -> val != root2 -> val){
-            return false;
-        }
-
-        return isValid(root1->left, root2->left) && isValid(root1->right, root2->right);
-
-
-    }
-
-    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        //if both point to null then return true
         if(root == nullptr && subRoot == nullptr){
             return true;
         }else if(root == nullptr || subRoot == nullptr){
             return false;
         }
 
-        //if we found root == subRoot
-        if(root -> val == subRoot -> val){
-            if(isValid(root , subRoot)){
+        if(root -> val != subRoot -> val){
+            return false;
+        }
+
+        bool left = helper(root -> left , subRoot -> left);
+        bool right = helper(root -> right , subRoot -> right);
+        return left && right;
+    }
+
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+
+        if(root  == nullptr && subRoot == nullptr){
+            return true;
+        }else if(root == nullptr || subRoot == nullptr){
+            return false;
+        }
+
+        if(root-> val == subRoot -> val){
+            if(helper(root, subRoot)){
                 return true;
             }
         }
 
+        bool left = isSubtree(root -> left, subRoot);
+        bool right = isSubtree(root -> right, subRoot);
 
-        return isSubtree(root -> left , subRoot) || isSubtree(root -> right , subRoot);
+        return left || right;
+
+        
         
     }
 };
