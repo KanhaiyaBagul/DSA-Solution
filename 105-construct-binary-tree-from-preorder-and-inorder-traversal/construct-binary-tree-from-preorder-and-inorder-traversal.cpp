@@ -15,17 +15,17 @@ public:
         if(start > end){
             return nullptr;
         }
-        int rootVal = preorder[idx];
+        int rootVal = preorder[idx];//first find the root node
         
-        int i = start;
-        for(;i <= end; i++){
+        int i = start;//this is the index of the root node present in the preorder
+        for(;i <= end; i++){//here we find the index of root node in the preorder
             if(inorder[i] == rootVal){
                 break;
             }
         }
-        idx++;
+        idx++;//increment the idx
 
-        TreeNode* root = new TreeNode(rootVal);
+        TreeNode* root = new TreeNode(rootVal);//create a new node
 
         root -> left = helper(start, i - 1, idx, preorder, inorder);
         root -> right = helper(i + 1,end, idx, preorder, inorder);
