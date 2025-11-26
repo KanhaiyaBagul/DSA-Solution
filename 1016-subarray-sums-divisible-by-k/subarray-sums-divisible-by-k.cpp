@@ -10,8 +10,8 @@ public:
         for(int i = 0; i < nums.size(); i++){
             sum += nums[i];
             int rem = ((sum % k) + k) % k;
-            
-            result += f[rem];
+            int freq = f.find(rem) != f.end() ? f[rem] : 0;
+            result += freq;
             f[rem] ++;
 
         }
