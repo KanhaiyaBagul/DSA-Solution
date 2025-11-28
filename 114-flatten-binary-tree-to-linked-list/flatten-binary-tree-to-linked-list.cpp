@@ -25,14 +25,14 @@ public:
         return curr;
     }
 
-    void pre(TreeNode* root,stack<TreeNode*>& s){
+    void revpre(TreeNode* root,stack<TreeNode*>& s){
         if(root == nullptr){
             return;
         }
         
-        pre(root -> right,s);
+        revpre(root -> right,s);
 
-        pre(root -> left,s);
+        revpre(root -> left,s);
 
         s.push(root);
 
@@ -41,9 +41,9 @@ public:
     }
     void flatten(TreeNode* root) {
         stack<TreeNode*>s;
-        pre(root,s);
+        revpre(root,s); // reverser pre order
 
-        TreeNode* ans = recursion(s);
+        recursion(s);//this assembles the node in give condition
 
         
     }
