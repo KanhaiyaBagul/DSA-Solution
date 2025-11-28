@@ -11,25 +11,25 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root,vector<int>&preorder){
+    void dfs(TreeNode* root,vector<int>&inorder){
         if(root == nullptr){
             return;
         }
 
-        dfs(root -> left,preorder);
+        dfs(root -> left,inorder);
 
-        preorder.push_back(root -> val);
+        inorder.push_back(root -> val);
 
-        dfs(root -> right, preorder);
+        dfs(root -> right, inorder);
 
     }
     int getMinimumDifference(TreeNode* root) {
 
-        vector<int>preorder;
-        dfs(root, preorder);
+        vector<int>inorder;
+        dfs(root, inorder);
         int minAbs = INT_MAX;
-        for(int i = 1; i < preorder.size();i++){
-            minAbs = min(minAbs, abs(preorder[i-1]- preorder[i]));
+        for(int i = 1; i < inorder.size();i++){
+            minAbs = min(minAbs, abs(inorder[i-1]- inorder[i]));
 
         }
         return minAbs;
