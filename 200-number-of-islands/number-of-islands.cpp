@@ -7,10 +7,10 @@ public:
             return;
         }
 
-        grid[r][c] = '0';
-
-        int x[4] = {-1,0,1,0};
-        int y[4] = {0,1,0,-1};
+        grid[r][c] = '0';//make visited "0"
+        //this are for all 4 direction
+        int x[] = {-1,0,1,0};
+        int y[] = {0,1,0,-1};
 
         for(int i = 0; i < 4; i++){
             int nr = r + x[i];
@@ -25,7 +25,7 @@ public:
         n = grid[0].size();
 
         int count = 0;
-
+        //this loop iterate through each cell of grid , if the element is grid it call the function and try to visit all the up , down , righ , left element
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(grid[i][j] == '1'){
