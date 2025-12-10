@@ -11,9 +11,10 @@
  */
 class Solution {
 public: 
+    //traverse through the tree and get the element in string format
     void DFS(TreeNode* root,string& str){
         if(root == nullptr){
-            str+="#";
+            str+="#";//this is use for where is the nullptr lie
             return;
         }
 
