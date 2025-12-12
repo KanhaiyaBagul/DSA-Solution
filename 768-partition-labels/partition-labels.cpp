@@ -1,10 +1,10 @@
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        unordered_map<char,int>freq;
-
+       vector<int> last(26); 
+        //first find the start ending of the each character
         for(int i = 0; i < s.size(); i++){
-            freq[s[i]] = i;
+            last[s[i] - 'a'] = i;
         }
 
         int end = 0;
@@ -12,7 +12,7 @@ public:
         vector<int> result;
 
         for(int i = 0; i < s.size(); i++){
-            end = max(end,freq[s[i]]);
+            end = max(end,last[s[i] - 'a']);
 
             if(i == end){
                 result.push_back(end - start + 1);
