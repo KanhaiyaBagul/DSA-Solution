@@ -10,7 +10,9 @@ public:
         int end = 0;
         int start = 0;
         vector<int> result;
-
+        //now loop through the starting index
+        //we find max index of the element 
+        //if our i == the max len of the char in between the i so far , then it means that the start - end + 1 is the unique len 
         for(int i = 0; i < s.size(); i++){
             end = max(end,last[s[i] - 'a']);
 
