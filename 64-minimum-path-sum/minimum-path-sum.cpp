@@ -4,13 +4,11 @@ public:
     
     int dfs(int i, int j,vector<vector<int>>& grid,vector<vector<int>>& dp){
 
-        if(i >= m || j >= n) return INT_MAX;
+        if(i >= m || j >= n) return INT_MAX;//if it get out of bound then return the max Value
 
-        
-
-
+    
         if(i == m - 1 && j == n - 1){
-            return grid[i][j];
+            return grid[i][j];//if we reach the destination
         }
 
         if(dp[i][j] != -1) return dp[i][j];
