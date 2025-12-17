@@ -1,7 +1,5 @@
 class Solution {
 public:
-    
-    const long long MOD = 2 * 1e9;
     int r , c;
     int dfs(int i , int j,vector<vector<int>>& dp){
         if(i >= r || j >= c) return 0;
