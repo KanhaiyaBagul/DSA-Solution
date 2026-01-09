@@ -16,6 +16,7 @@ public:
     int maxDep = 0;
 
     TreeNode* LCA(TreeNode* root){
+        //if the node is the depest leaf node then return that node
         if(!root || m[root -> val] == maxDep){
             return root;
         }
@@ -27,6 +28,8 @@ public:
 
         return left == nullptr ? right : left;
     }
+
+    //calculate the depth of each node and store in it Hash Map
     void calcDepth(TreeNode*root,int d){
 
         if(!root) return;
