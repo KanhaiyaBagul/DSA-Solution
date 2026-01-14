@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        
+
+        int low = 0;
+        int high = nums.size() - 1;
+
+        while(low < high){
+            int mid = low + (high - low) / 2;
+
+
+            if(nums[mid] < nums[mid + 1]){//if the solpe is in increasing the ans must lie in the right side
+                low = mid + 1;
+            }else{
+                high = mid;
+            }
+   
+        }
+        return low;
+        
+    }
+};
