@@ -6,9 +6,9 @@ public:
         int currWeight = 0;
         for(int i = 0; i < weights.size(); i++){
 
-            if(currWeight + weights[i] <= mid){
+            if(currWeight + weights[i] <= mid){//for every weight if it is in the limit of the mid then we include it in same day 
                 currWeight += weights[i];
-            }else{
+            }else{//if not then count another day and reinitilize the weights 
                 currDays ++;
                 currWeight = weights[i];
             }
