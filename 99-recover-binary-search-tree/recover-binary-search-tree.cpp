@@ -11,34 +11,32 @@
  */
 class Solution {
 public:
-    void inOrder(TreeNode* root, vector<int>& inorder){
+    //so their is only two numbers , we just have to track them in the recursion 
+    TreeNode* prev = nullptr;
+    TreeNode* first = nullptr;
+    TreeNode* second = nullptr;
+    void inOrder(TreeNode* root){
         if(!root){
             return;
         }
 
-        inOrder(root -> left,inorder);
-        inorder.push_back(root -> val);
-        inOrder(root -> right,inorder);
+        inOrder(root -> left);
+        if(prev && prev -> val > root -> val){
+            if(!first){
+                first = prev;
+            }
+            second = root;
+        }
+        prev = root;
+        inOrder(root -> right);
     }
 
-    void check(TreeNode* root , int& i,vector<int>& inorder){
-        if(!root) return;
 
-        check(root -> left,i,inorder);
-        
-            root -> val = inorder[i];
-            i++;
-        
-        check(root -> right,i,inorder);
-    }
 
     void recoverTree(TreeNode* root) {
-        vector<int> inorder;
-        inOrder(root, inorder);
-        sort(inorder.begin(),inorder.end());
-        int i = 0;
-        check(root, i,inorder);
-
+        
+        inOrder(root);
+        swap(first-> val,second->val);
         return;  
     }
 };
