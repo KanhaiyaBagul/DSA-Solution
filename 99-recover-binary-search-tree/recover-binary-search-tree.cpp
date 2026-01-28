@@ -22,9 +22,12 @@ public:
 
         inOrder(root -> left);
         if(prev && prev -> val > root -> val){
+            //if we don't find the first element , so the this could be the first and prev is the the node for the first
             if(!first){
                 first = prev;
             }
+            //for the second element when it hit the prev > root
+            //so the root is the second element
             second = root;
         }
         prev = root;
