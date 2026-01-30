@@ -13,12 +13,12 @@ public:
                 int b = nums2[j];
                 int sum = a + b;
                
-                if(pq.size() < k){
+                if(pq.size() < k){//if element is less than k 
                     pq.push({sum,{a,b}}); 
-                }else if(!pq.empty() && pq.top().first > (a + b)){
+                }else if(!pq.empty() && pq.top().first > (a + b)){//if we found the new sum and it is less than the top element then pop the top and inser the curr sum with  a and b
                     pq.pop();
                     pq.push({sum,{a,b}});
-                }else{
+                }else{//after that we get the greater element , no need of that , we can't find any less sum 
                     break;
                 }
             }
