@@ -1,5 +1,7 @@
+//Use Binary Search to find K
 class Solution {
 public:
+    //this is use to calculate the total Hits 
     long long totalHits(vector<int>& nums, int k){
         long long hit = 0;
         for(int &num : nums){
