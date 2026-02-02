@@ -6,11 +6,15 @@ public:
 
         for(char ch : s){
             if(islower(ch)){
-                lower = ch + lower;
+                lower.push_back(ch);
             }else{
-                special = ch + special;
+                
+                special.push_back(ch);
             }
         }
+
+        reverse(lower.begin(),lower.end());
+        reverse(special.begin(),special.end());
 
         string result = "";
         int i = 0; 
