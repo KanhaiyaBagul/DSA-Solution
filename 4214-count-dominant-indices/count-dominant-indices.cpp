@@ -9,7 +9,7 @@ public:
         for(int i = 0; i < n - 1; i++){
             totalSum -= nums[i];
 
-            double avg = totalSum / deno;
+            double avg = (double)totalSum / deno;
             deno--;
             if(nums[i] > avg){
                 count++;
