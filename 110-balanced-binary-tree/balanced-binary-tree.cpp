@@ -20,10 +20,9 @@ public:
         int right = height(root -> right);
         int left = height(root -> left);
 
-        if(right == -1 || left == -1) return -1;
+        if(right == -1 || left == -1) return -1;//we encounter any of subtree have unbalance then direct return the ans
 
-        if(abs(right - left) > 1) return -1;
-
+        if(abs(right - left) > 1) return -1;//it return -1 when the dist become greater than 1
         return max(right, left) + 1;
     }
     
