@@ -11,41 +11,35 @@
  */
 class Solution {
 public:
+    TreeNode*arrange(int l,int r, vector<TreeNode*>& sorted){
+        if(l > r) return nullptr;
 
-    TreeNode* BST(vector<int>& inorder , int start , int end){
-        if(start > end){
-            return nullptr;
-        }
+        int mid = l +  (r-l) / 2;
 
-        int mid = start + (end - start) / 2;
-        TreeNode* curr = new TreeNode(inorder[mid]);
+        TreeNode* root = sorted[mid];
 
-        curr -> left = BST(inorder, start , mid - 1);
-        curr -> right = BST(inorder, mid + 1 , end);
+        root -> left = arrange(l,mid - 1, sorted);
+        root -> right = arrange(mid + 1 , r,sorted);
+        return root;
 
-        return curr;
+
     }
-    //inorder gives the sorted array
-    void getInOrder(TreeNode* root , vector<int>& inorder){
-        if(root == nullptr){
-            return;
-        }
-        
-        getInOrder(root -> left , inorder);
+    void dfs(TreeNode* root , vector<TreeNode*> &sorted){
+        if(!root) return;
 
-        inorder.push_back(root -> val);
-
-        getInOrder(root -> right , inorder);
+        dfs(root -> left, sorted);
+        sorted.push_back(root);
+        dfs(root -> right,sorted);
     }
-
     TreeNode* balanceBST(TreeNode* root) {
-        vector<int> inorder;
-        //calculate inorder , sorted array
-        getInOrder(root , inorder);
-        
-        int start = 0;
-        int end = inorder.size() - 1;
-        return BST(inorder, start , end);
+        vector<TreeNode*> sorted;
+        dfs(root, sorted);
+        int r = sorted.size() - 1;
+
+        return arrange(0,r,sorted);
+
+
+
         
     }
 };
