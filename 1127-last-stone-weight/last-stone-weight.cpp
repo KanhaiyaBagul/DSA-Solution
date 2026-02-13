@@ -1,8 +1,7 @@
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        priority_queue<int> pq (stones.begin(),stones.end());
-
+        priority_queue<int> pq(stones.begin(),stones.end());
         while(pq.size() > 1){
             int y = pq.top();
             pq.pop();
@@ -11,13 +10,16 @@ public:
 
             if(x == y){
                 continue;
-            }
-            if(x != y){
+            }if(x != y){
                 pq.push(y-x);
             }
         }
-        //here we check if the priority queue is empty or not
-        return pq.size() == 0 ? 0 : pq.top();
+
+        if(pq.size() == 0) return 0;
+
+        return pq.top();
+
+
         
     }
 };
