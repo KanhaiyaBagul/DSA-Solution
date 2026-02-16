@@ -1,15 +1,18 @@
 class Solution {
 public:
     int reverseBits(int n) {
-        int result = 0;
 
-        for(int i = 0; i < 32; i++){
-            result = result << 1;
-            result = result | (n & 1);
+        int ans = 0;
+
+        for (int i = 0; i < 32; i++) {
+            int bitmast = n & 1;
+            ans = ans << 1;
+            ans += bitmast;
+            
 
             n = n >> 1;
         }
-        return result;
-        
+
+        return ans;
     }
 };
