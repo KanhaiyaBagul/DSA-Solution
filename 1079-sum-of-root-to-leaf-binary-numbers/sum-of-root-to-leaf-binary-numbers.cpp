@@ -21,13 +21,13 @@ public:
             return curr;
         }
 
-        return helper(root-> left , curr) +  helper(root -> right , curr);
+        int left = helper(root-> left , curr);
+        int right = helper(root -> right , curr);
+
+        return left + right;
 
     }
     int sumRootToLeaf(TreeNode* root) {
-        return helper(root, 0);
-
-
-        
+        return helper(root, 0); 
     }
 };
