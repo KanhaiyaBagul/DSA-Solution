@@ -1,29 +1,30 @@
 class Solution {
 public:
-    int sum(int n){
-        int result = 0;
+    int helper(int n){
+        int sum = 0;
         while(n > 0){
             int d = n % 10;
-            result = result + (d*d);
             n = n / 10;
-        }
+            sum += d * d;
 
-        return result;
+        }
+        return sum;
     }
     bool isHappy(int n) {
-        int slow = n; 
+        int slow = n;
         int fast = n;
 
         while(fast != 1){
-            slow = sum(slow);
-            fast = sum(fast);
-            fast = sum(fast);
+            slow = helper(slow);
+            fast = helper(fast);
+            fast = helper(fast);
 
             if(slow == fast && slow != 1){
                 return false;
             }
         }
         return true;
+
         
     }
 };
