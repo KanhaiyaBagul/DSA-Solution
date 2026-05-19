@@ -10,16 +10,13 @@ public:
         while(i < n && j < m){
             if(nums1[i] == nums2[j]){
                 return nums1[i];
-                break;
             }
             if(nums1[i] > nums2[j]){
                 j++;
             }else{
                 i++;
             }
-
         }
-        return -1;
-        
+        return -1; 
     }
 };
