@@ -6,11 +6,11 @@ public:
         int altitude = 0;
 
         for(int i = 0; i < n; i++){
+            altitude += gain[i];
             maxAltitude = max(maxAltitude , altitude);
 
-            altitude += gain[i];
         }
-        maxAltitude = max(maxAltitude , altitude);
+        
         return maxAltitude; 
     }
 };
