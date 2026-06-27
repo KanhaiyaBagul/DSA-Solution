@@ -1,31 +1,38 @@
 class Solution {
 public:
+
+    int recursion(vector<int>& prices, int i ,int n, int k,vector<vector<int>>& dp){
+        
+        if(i == n || k == 0){
+            return 0;
+        }
+
+        if(dp[i][k] != -1){
+            return dp[i][k];
+        }
+
+        //Buy
+        if(k == 2){
+            int buy = recursion(prices,i+1,n,k-1,dp) - prices[i];
+            int skip = recursion(prices,i+1,n,k,dp);
+
+            return dp[i][k] =  max(buy,skip);
+        }
+        //Sell
+        else{
+            int sell = recursion(prices,i+1,n,k-1,dp) + prices[i];
+            int skip = recursion(prices,i+1,n,k,dp);
+            return dp[i][k] =  max(sell,skip);
+        }
+    }
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<int> buy(n);
-        vector<int> sell(n);
-        buy[0] = prices[0];
-        sell[n-1] = prices[n-1];
-        int maxprofit = 0;
+        int k = 2;
 
+        vector<vector<int>> dp(n,vector<int>(3,-1));
 
-        for(int i = 1; i < n; i++ ){
-            buy[i] = min(buy[i - 1],prices[i]);
-        }
-
-        for(int i = n - 2 ; i >=0 ; i--){
-            sell[i] = max(sell[i + 1], prices[i]);
-            
-            
-        }
-
-        for(int i = 0; i < n; i++){
-            maxprofit = max(maxprofit,sell[i] - buy[i]);
-        }
-
-        return maxprofit;
-
-
+        int gain = recursion(prices,0,n,k,dp);
+        return gain;
         
     }
 };
