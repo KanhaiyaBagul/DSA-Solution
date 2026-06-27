@@ -12,7 +12,7 @@ public:
         }
 
         //Buy
-        if(k == 4 || k == 2){
+        if(k % 2 == 0){
             int buy = recursion(prices,i+1,n,k-1,dp) - prices[i];
             int skip = recursion(prices,i+1,n,k,dp);
 
