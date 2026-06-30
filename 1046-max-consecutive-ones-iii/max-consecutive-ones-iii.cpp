@@ -16,7 +16,7 @@ public:
                 }
 
 
-             left ++;   
+             left++;   
             }
 
             maxLength = max(maxLength, right - left + 1);
